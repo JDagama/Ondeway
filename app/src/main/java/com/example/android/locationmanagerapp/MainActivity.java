@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 intent1.putExtra("USER_LOCATION", currentBestLocation);
                 locationManager.removeUpdates(locationListener);
                 startActivity(intent1);
-
+                MainActivity.this.finish();
 
 
             }

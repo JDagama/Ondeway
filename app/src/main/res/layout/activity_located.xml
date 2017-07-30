@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.locationmanagerapp.LocatedActivity">
 
-
-
-
-
     <Button
         android:id="@+id/button_search"
         android:layout_height="48dp"
