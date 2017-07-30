@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.i(TAG, "xxx Comenzamos pesss");
         mLayout = findViewById(R.id.main_layout_radar);
-        intent1 = new Intent(MainActivity.this, LocatedActivity.class);
+        intent1 = new Intent(MainActivity.this, MenuSearchActivity.class);
 
         //Validando los permisos
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED

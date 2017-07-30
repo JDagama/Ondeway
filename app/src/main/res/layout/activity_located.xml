@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.locationmanagerapp.LocatedActivity">
+    tools:context="com.example.android.locationmanagerapp.MenuSearchActivity">
 
-    <Button
-        android:id="@+id/button_search"
-        android:layout_height="48dp"
-        android:layout_width="280dp"
-        android:background="@color/colorAccent"
-        android:textColor="@android:color/white"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:text="Ondeway"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/menuimage1"/>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:inputType="text"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:padding="2sp"
-        android:background="#C0FEFEFE"
-        android:text="HOLI"
-        app:layout_constraintBottom_toBottomOf="@id/button_search"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="280sp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:padding="2sp"
+                android:background="#C0FEFEFE"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_height="40sp"
+            android:layout_width="280sp"
+            android:background="@color/colorRedOndeway"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:text="Buscar"/>
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

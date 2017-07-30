@@ -20,8 +20,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="80sp"
-            android:layout_height="80sp"
+            android:layout_width="87sp"
+            android:layout_height="87sp"
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
             android:src="@drawable/cutlery_128"/>
