@@ -26,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "xxx Comenzamos pesss");
         mLayout = findViewById(R.id.main_layout_radar);
+
         //Validando los permisos
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
             Log.i(TAG, "xxx Se requiere algun permiso");
@@ -43,19 +45,16 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
                 Log.i(TAG, "xxx Ya habia rechazado");
-                //Intent intent = new Intent(MainActivity.this, FailedActivity.class);
-                //startActivity(intent);           Snackbar.make(mLayout, R.string.permission_contacts_rationale,
-                Snackbar.make(mLayout, "Esta aplicación requiere acceder a su localización" ,Snackbar.LENGTH_INDEFINITE)
-                .setAction("OK", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.i(TAG, "xxx Funciono el snackbar");
-                        ActivityCompat.requestPermissions(MainActivity.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
-                                MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-                    }
-                }).show();
-
+                Snackbar.make(mLayout, "Esta aplicación requiere acceder a su localización", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Log.i(TAG, "xxx Funciono el snackbar");
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                            }
+                        }).show();
 
 
             } else {
@@ -63,24 +62,43 @@ public class MainActivity extends AppCompatActivity {
                 // No explanation needed, we can request the permission.
                 Log.i(TAG, "xxx Solicitando permisos");
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
             }
-        }
-        else {
+        } else {
 
-            //getUserLocation();
             Log.i(TAG, "xxx ya se tenian todos los permisos");
-            Intent intent = new Intent(MainActivity.this, LocatedActivity.class);
-            //EditText editText = (EditText) findViewById(R.id.editText);
-            //String message = editText.getText().toString();
-            startActivity(intent);
-
+            //Empiezo a buscar la ubicacion del cliente;
+            //starGettingLocation();
         }
+
+        //Respuesta al Boton de buscar
+        Button button = (Button) findViewById(R.id.button_search);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(TAG, "xxx Boton presionado!");
+                /*String locationProvider = LocationManager.GPS_PROVIDER;
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                    Log.i(TAG, "xxx Solicitando permisos desde el boton");
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+                    return;
+                }
+                Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+                String latitude = String.valueOf(lastKnownLocation.getLatitude());
+                String longitude = String.valueOf(lastKnownLocation.getLongitude());
+                float accuracy = lastKnownLocation.getAccuracy();
+
+                Snackbar.make(mLayout, latitude, Snackbar.LENGTH_INDEFINITE);*/
+
+
+
+            }
+        });
+
     }
 
     @Override
@@ -94,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.i(TAG, "xxx La respuesta fue positiva");
+
+                    //Empiezo a buscar la ubicacion del cliente;
+                    //starGettingLocation();
+
 
                 } else {
                     Log.i(TAG, "xxx La respuesta fue negativa");
@@ -109,14 +131,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void starGettingLocation() {
 
-
-
-
-
-
-    private void getUserLocation(){
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
@@ -132,7 +148,20 @@ public class MainActivity extends AppCompatActivity {
             public void onProviderDisabled(String provider) {
             }
         };
+        /*String locationProvider = LocationManager.GPS_PROVIDER;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            Log.i(TAG, "xxx Solicitando permisos desde llamada");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+            return;
+        }*/
+        //locationManager.requestLocationUpdates(locationProvider, 0, 0, locationListener);
+
     }
+
 
     private void makeUseOfNewLocation(Location location) {
         if ( isBetterLocation(location, currentBestLocation) ) {
