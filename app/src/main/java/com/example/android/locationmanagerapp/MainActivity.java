@@ -9,7 +9,6 @@ import android.location.LocationListener;
 import android.location.Location;
 import android.content.Context;
 import android.view.View;
-import android.widget.Button;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
 import android.content.pm.PackageManager;
@@ -23,14 +22,19 @@ public class MainActivity extends AppCompatActivity {
     final private int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private String TAG = MainActivity.class.getSimpleName();
     private View mLayout;
+    public LocationManager locationManager;
+    public LocationListener locationListener;
+    private boolean userLocated = false;
+    Intent intent1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "xxx Comenzamos pesss");
         mLayout = findViewById(R.id.main_layout_radar);
+        intent1 = new Intent(MainActivity.this, LocatedActivity.class);
 
         //Validando los permisos
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -69,35 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
             Log.i(TAG, "xxx ya se tenian todos los permisos");
             //Empiezo a buscar la ubicacion del cliente;
-            //starGettingLocation();
+            starGettingLocation(locationManager);
         }
 
-        //Respuesta al Boton de buscar
-        Button button = (Button) findViewById(R.id.button_search);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.i(TAG, "xxx Boton presionado!");
-                /*String locationProvider = LocationManager.GPS_PROVIDER;
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-                    Log.i(TAG, "xxx Solicitando permisos desde el boton");
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-                    return;
-                }
-                Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-                String latitude = String.valueOf(lastKnownLocation.getLatitude());
-                String longitude = String.valueOf(lastKnownLocation.getLongitude());
-                float accuracy = lastKnownLocation.getAccuracy();
-
-                Snackbar.make(mLayout, latitude, Snackbar.LENGTH_INDEFINITE);*/
-
-
-
-            }
-        });
 
     }
 
@@ -114,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "xxx La respuesta fue positiva");
 
                     //Empiezo a buscar la ubicacion del cliente;
-                    //starGettingLocation();
+                    starGettingLocation(locationManager);
 
 
                 } else {
@@ -131,12 +110,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void starGettingLocation() {
+    private void starGettingLocation(final LocationManager locationManager) {
 
-        LocationListener locationListener = new LocationListener() {
+        locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
+                Log.i(TAG, "xxx Llegó un update GPS");
                 makeUseOfNewLocation(location);
+                //cambio de pagina luego de la primera actualizacion
+                intent1.putExtra("USER_LOCATION", currentBestLocation);
+                locationManager.removeUpdates(locationListener);
+                startActivity(intent1);
+
+
+
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -148,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProviderDisabled(String provider) {
             }
         };
-        /*String locationProvider = LocationManager.GPS_PROVIDER;
+        String locationProvider = LocationManager.GPS_PROVIDER;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             Log.i(TAG, "xxx Solicitando permisos desde llamada");
@@ -157,15 +144,27 @@ public class MainActivity extends AppCompatActivity {
                     MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
 
             return;
-        }*/
-        //locationManager.requestLocationUpdates(locationProvider, 0, 0, locationListener);
+        }
+        Log.i(TAG, "xxx Empezando a recibir updates");
+        locationManager.requestLocationUpdates(locationProvider, 10000, 0, locationListener);
 
     }
 
 
+
+
+
+
+
+
+    //*****************************************TOOLS*********************************************
+    //*******************************************************************************************
     private void makeUseOfNewLocation(Location location) {
         if ( isBetterLocation(location, currentBestLocation) ) {
+            Log.i(TAG, "xxx Update GPS aceptado");
             currentBestLocation = location;
+            Log.i(TAG, "xxx   Longitud" + String.valueOf(currentBestLocation.getLongitude()));
+            Log.i(TAG, "xxx   Latitud" + String.valueOf(currentBestLocation.getLatitude()));
         }
     }
 

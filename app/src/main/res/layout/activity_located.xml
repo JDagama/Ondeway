@@ -7,17 +7,34 @@
     tools:context="com.example.android.locationmanagerapp.LocatedActivity">
 
 
+
+
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_height="48dp"
+        android:layout_width="280dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"
+        android:text="Ondeway"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:inputType="text"
-        android:layout_marginTop="5sp"
-        android:layout_marginBottom="5sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:padding="2sp"
         android:background="#C0FEFEFE"
-        android:text="Estas en Pichanaki"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="HOLI"
+        app:layout_constraintBottom_toBottomOf="@id/button_search"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
