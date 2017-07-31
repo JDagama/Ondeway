@@ -5,16 +5,6 @@
     android:layout_margin="50sp">
 
     <TextView
-        android:id="@+id/id"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:paddingTop="6dip"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/commercial_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
