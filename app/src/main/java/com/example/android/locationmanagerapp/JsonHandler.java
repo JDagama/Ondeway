@@ -35,7 +35,7 @@ public class JsonHandler {
                 String slogan = c.getString("slogan");
                 String full_address = c.getString("full_address");
                 String working_hours=c.getString("working_hours");
-                String first_price=c.getString("first_price");
+                String first_price="S/. "+c.getString("first_price");
 
                 // Hash Temporal para un Restaurante
                 HashMap<String, String> Restaurant = new HashMap<>();
