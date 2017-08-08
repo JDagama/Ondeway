@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.location.Location;
 import android.widget.Toast;
+import android.support.v7.app.ActionBar;
 
 
 public class MenuSearchActivity extends AppCompatActivity {
@@ -25,6 +26,11 @@ public class MenuSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_located);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.logondeway8);
+
         location = getIntent().getParcelableExtra("USER_LOCATION");
 
         misCoordenadas = (EditText) findViewById(R.id.editText);
@@ -34,7 +40,6 @@ public class MenuSearchActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button_search);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(TAG, "xxx Tus Nuevas coordenadas "+String.valueOf(location.getLongitude())+" y "+String.valueOf(location.getLatitude()) );
                 //Buscar el menu en el servidor JSON
                 new GetMenu().execute();
             }

@@ -122,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 locationManager.removeUpdates(locationListener);
                 startActivity(intent1);
                 MainActivity.this.finish();
-
-
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -147,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.i(TAG, "xxx Empezando a recibir updates");
         locationManager.requestLocationUpdates(locationProvider, 10000, 0, locationListener);
-
     }
 
 

@@ -7,9 +7,6 @@
     android:id="@+id/main_layout_radar"
     tools:context="com.example.android.locationmanagerapp.MainActivity">
 
-
-
-
     <RelativeLayout
         android:id="@+id/loading_icon"
         android:layout_width="200sp"

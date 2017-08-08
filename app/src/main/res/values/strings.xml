@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LocationManagerApp</string>
+    <string name="spinner_title">Hora de entrega sugerida:</string>
 </resources>

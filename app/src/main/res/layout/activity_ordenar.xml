@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.locationmanagerapp.OrdenarActivity">
+    <RelativeLayout
+        android:id="@+id/Restaurante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_bg"
+        android:layout_margin="0sp">
+
+        <TextView
+            android:id="@+id/first_price"
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:textColor="#5d5d5d"
+            android:layout_marginLeft="10sp"
+            android:text="S/. 10"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15sp"/>
+
+        <TextView
+            android:id="@+id/commercial_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="10sp"
+            android:layout_toLeftOf="@+id/first_price"
+            android:text="La Tia Jiovy"
+            android:textColor="#5d5d5d"
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/commercial_name"
+            android:layout_margin="5sp">
+            <TextView
+                android:id="@+id/slogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:layout_marginLeft="5sp"
+                android:text="El mejor menu de surquillo"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/full_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:layout_marginLeft="5sp"
+                android:text="AV San Felipe 121, Surquillo - Lima"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/working_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:layout_marginLeft="5sp"
+                android:text="De Lunes a viernes de 09:00 am a 10:00 pm"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tablapedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/Restaurante"
+        android:layout_margin="30sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Su Pedido es:"/>
+        <ListView
+            android:id="@+id/pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"
+            android:divider="@null"
+            android:dividerHeight="0dp">
+        </ListView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/informacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/tablapedido"
+        android:layout_centerHorizontal="true"
+        android:text="Informacion de Entrega"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+    <LinearLayout
+        android:id="@+id/tablainfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/informacion"
+        android:layout_marginLeft="35sp"
+        android:layout_marginRight="35sp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"/>
+
+            <EditText
+                android:id="@+id/editNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10sp"
+                android:background="#F1F1F1"
+                android:inputType="text"
+                android:padding="2sp"
+                android:paddingHorizontal="10sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección:"/>
+
+            <EditText
+                android:id="@+id/editDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_marginBottom="10sp"
+                android:paddingHorizontal="10sp"
+                android:padding="2sp"
+                android:background="#F1F1F1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referencia:"/>
+
+            <EditText
+                android:id="@+id/editReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_marginBottom="10sp"
+                android:padding="2sp"
+                android:paddingHorizontal="10sp"
+                android:background="#F1F1F1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora de entrega:"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25sp"
+            android:background="#F1F1F1">
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="25sp"
+                android:prompt="@string/spinner_title"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_height="30sp"
+        android:layout_width="200sp"
+        android:background="@color/colorRedOndeway"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"
+        android:text="Ordenar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

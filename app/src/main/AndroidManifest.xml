@@ -12,6 +12,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Ondeway"
+        android:logo="@drawable/logondeway8"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -27,7 +28,13 @@
         <activity android:name=".MenuSearchActivity" />
         <activity android:name=".FailedActivity" />
         <activity android:name=".RestaurantListActivity" />
-        <activity android:name=".RestaurantDetailActivity"></activity>
+        <activity android:name=".RestaurantDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".OrdenarActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

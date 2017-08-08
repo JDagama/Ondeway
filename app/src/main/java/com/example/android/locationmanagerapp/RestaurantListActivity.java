@@ -24,7 +24,14 @@ public class RestaurantListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.logondeway8);
+
+
         lv = (ListView) findViewById(R.id.list);
+
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         final String jsonStr = intent.getStringExtra("JSON_RESPUESTA");
